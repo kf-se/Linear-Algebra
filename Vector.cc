@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace vector;
+
 int main() {
 	auto vec1 = Vector<double>(3);
 	auto vec2 = Vector<double>{1, 2, 3};

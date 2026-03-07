@@ -5,6 +5,8 @@
 #include <stdexcept>
 #include <vector>
 
+namespace vector {
+
 template <typename T>
 class Vector {
 private:
@@ -31,7 +33,7 @@ public:
 		return data[i];
 	}
 
-	auto operator+(Vector<T>& rhs) -> Vector {
+	auto operator+(Vector<T>& rhs) -> Vector<T> {
 		if (this->size() != rhs.size()) {
 			throw std::invalid_argument("Vector size mismatch");
 		}
@@ -39,9 +41,10 @@ public:
 		for (size_t i = 0; i < this->size(); ++i) {
 			data[i] += rhs[i];
 		}
-		return this;
+		return *this;
 	}
-	auto operator-(Vector<T>& rhs) -> Vector {
+
+	auto operator-(Vector<T>& rhs) -> Vector<T> {
 		if (this->size() != rhs.size()) {
 			throw std::invalid_argument("Vector size mismatch");
 		}
@@ -49,7 +52,7 @@ public:
 		for (size_t i = 0; i < this->size(); ++i) {
 			data[i] -= rhs[i];
 		}
-		return this;
+		return *this;
 	}
 
 	auto operator*(T scalar) const -> Vector<T> {
@@ -69,16 +72,19 @@ public:
 		stream << "]";
 		return stream;
 	}
-
-	static auto dot(Vector<T>& lhs, Vector<T>& rhs) -> T {
-		if (lhs->size() != rhs.size()) {
-			throw std::invalid_argument("Vector size mismatch");
-		}
-
-		T res;
-		for (size_t i = 0; i < lhs->size(); ++i) {
-			res = lhs[i] + rhs[i];
-		}
-		return res;
-	}
 };
+
+template <typename T>
+static auto dot(Vector<T>& lhs, Vector<T>& rhs) -> T {
+	if (lhs.size() != rhs.size()) {
+		throw std::invalid_argument("Vector size mismatch");
+	}
+
+	T res;
+	for (size_t i = 0; i < lhs.size(); ++i) {
+		res += lhs[i] + rhs[i];
+	}
+	return res;
+}
+
+}	 // namespace vector
