@@ -1,14 +1,14 @@
 #include "Vector.hh"
-#include <initializer_list>
-#include <vector>
 
-template <typename T> class Vector {
-  private:
-    std::vector<T> data;
+#include <iostream>
 
-  public:
-    Vector(size_t size) {}
-    Vector(std::initializer_list<T> list) : data(list) {}
-};
+int main() {
+	auto vec1 = Vector<double>(3);
+	auto vec2 = Vector<double>{1, 2, 3};
+	auto vec3 = Vector<double>{2, 2, 2};
+	auto res = vec2 * 5.0;
 
-int main() { return 0; }
+	std::cout << res;
+
+	return 0;
+}
