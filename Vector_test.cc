@@ -39,6 +39,11 @@ TEST_F(VectorTest, Addition) {
 	EXPECT_DOUBLE_EQ(res[0], 5.0);
 	EXPECT_DOUBLE_EQ(res[1], 7.0);
 	EXPECT_DOUBLE_EQ(res[2], 9.0);
+
+	v1 += v2;
+	EXPECT_DOUBLE_EQ(v1[0], 5.0);
+	EXPECT_DOUBLE_EQ(v1[1], 7.0);
+	EXPECT_DOUBLE_EQ(v1[2], 9.0);
 }
 
 TEST_F(VectorTest, Subtraction) {
@@ -46,6 +51,11 @@ TEST_F(VectorTest, Subtraction) {
 	EXPECT_DOUBLE_EQ(res[0], 3.0);
 	EXPECT_DOUBLE_EQ(res[1], 3.0);
 	EXPECT_DOUBLE_EQ(res[2], 3.0);
+
+	v2 -= v1;
+	EXPECT_DOUBLE_EQ(v2[0], 3.0);
+	EXPECT_DOUBLE_EQ(v2[1], 3.0);
+	EXPECT_DOUBLE_EQ(v2[2], 3.0);
 }
 
 TEST_F(VectorTest, SizeMismatchThrows) {
@@ -53,4 +63,7 @@ TEST_F(VectorTest, SizeMismatchThrows) {
 	EXPECT_THROW(v1 + small, std::invalid_argument);
 }
 
-TEST_F(VectorTest, DotProduct) { EXPECT_DOUBLE_EQ(vector::dot(v1, v1), 12.0); }
+TEST_F(VectorTest, DotProduct) {
+	auto res = vector::dot(v1, v1);
+	EXPECT_DOUBLE_EQ(res, 14.0) << res;
+}

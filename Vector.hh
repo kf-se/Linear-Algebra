@@ -34,6 +34,18 @@ public:
 	}
 
 	auto operator+(Vector<T>& rhs) -> Vector<T> {
+		Vector<T> ret(*this);
+		ret += rhs;
+		return ret;
+	}
+
+	auto operator-(Vector<T>& rhs) -> Vector<T> {
+		Vector<T> ret(*this);
+		ret -= rhs;
+		return ret;
+	}
+
+	auto operator+=(Vector<T>& rhs) -> Vector<T> {
 		if (this->size() != rhs.size()) {
 			throw std::invalid_argument("Vector size mismatch");
 		}
@@ -44,7 +56,7 @@ public:
 		return *this;
 	}
 
-	auto operator-(Vector<T>& rhs) -> Vector<T> {
+	auto operator-=(Vector<T>& rhs) -> Vector<T> {
 		if (this->size() != rhs.size()) {
 			throw std::invalid_argument("Vector size mismatch");
 		}
@@ -80,9 +92,9 @@ static auto dot(Vector<T>& lhs, Vector<T>& rhs) -> T {
 		throw std::invalid_argument("Vector size mismatch");
 	}
 
-	T res;
+	T res = T{};
 	for (size_t i = 0; i < lhs.size(); ++i) {
-		res += lhs[i] + rhs[i];
+		res += lhs[i] * rhs[i];
 	}
 	return res;
 }
