@@ -45,7 +45,19 @@ public:
 		return ret;
 	}
 
-	auto operator+=(Vector<T>& rhs) -> Vector<T> {
+	auto operator*(T scalar) const -> Vector<T> {
+		Vector<T> ret(*this);
+		ret *= scalar;
+		return ret;
+	}
+
+	auto operator/(T scalar) const -> Vector<T> {
+		Vector<T> ret(*this);
+		ret /= scalar;
+		return ret;
+	}
+
+	auto operator+=(Vector<T>& rhs) -> Vector<T>& {
 		if (this->size() != rhs.size()) {
 			throw std::invalid_argument("Vector size mismatch");
 		}
@@ -56,7 +68,7 @@ public:
 		return *this;
 	}
 
-	auto operator-=(Vector<T>& rhs) -> Vector<T> {
+	auto operator-=(Vector<T>& rhs) -> Vector<T>& {
 		if (this->size() != rhs.size()) {
 			throw std::invalid_argument("Vector size mismatch");
 		}
@@ -67,12 +79,18 @@ public:
 		return *this;
 	}
 
-	auto operator*(T scalar) const -> Vector<T> {
-		Vector<T> ret(size());
+	auto operator*=(T scalar) -> Vector<T>& {
 		for (size_t i = 0; i < size(); ++i) {
-			ret[i] = data[i] * scalar;
+			data[i] *= scalar;
 		}
-		return ret;
+		return *this;
+	}
+
+	auto operator/=(T scalar) -> Vector<T>& {
+		for (size_t i = 0; i < size(); ++i) {
+			data[i] /= scalar;
+		}
+		return *this;
 	}
 
 	friend auto operator<<(std::ostream& stream, const Vector<T>& vec) -> std::ostream& {

@@ -32,6 +32,23 @@ TEST_F(VectorTest, ScalarMultiplication) {
 	EXPECT_DOUBLE_EQ(res[0], 2.0);
 	EXPECT_DOUBLE_EQ(res[1], 4.0);
 	EXPECT_DOUBLE_EQ(res[2], 6.0);
+
+	v1 *= 2.0;
+	EXPECT_DOUBLE_EQ(v1[0], 2.0);
+	EXPECT_DOUBLE_EQ(v1[1], 4.0);
+	EXPECT_DOUBLE_EQ(v1[2], 6.0);
+}
+
+TEST_F(VectorTest, ScalarDivision) {
+	auto res = v1 / 2.0;
+	EXPECT_DOUBLE_EQ(res[0], 0.5);
+	EXPECT_DOUBLE_EQ(res[1], 1.0);
+	EXPECT_DOUBLE_EQ(res[2], 1.5);
+
+	v1 /= 2.0;
+	EXPECT_DOUBLE_EQ(v1[0], 0.5);
+	EXPECT_DOUBLE_EQ(v1[1], 1.0);
+	EXPECT_DOUBLE_EQ(v1[2], 1.5);
 }
 
 TEST_F(VectorTest, Addition) {
