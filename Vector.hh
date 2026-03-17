@@ -17,6 +17,16 @@ public:
 	Vector(std::initializer_list<T> list) : data(list) {}
 	[[nodiscard]] auto size() const -> size_t { return data.size(); }
 
+	// non-const object -> mutable iterator
+	[[nodiscard]] auto begin() -> std::vector<T>::iterator { return data.begin(); }
+	[[nodiscard]] auto end() -> std::vector<T>::iterator { return data.end(); }
+	// const object -> const iterator
+	[[nodiscard]] auto begin() const -> std::vector<T>::const_iterator { return data.begin(); }
+	[[nodiscard]] auto end() const -> std::vector<T>::const_iterator { return data.end(); }
+	// const object -> const iterator
+	[[nodiscard]] auto cbegin() const -> typename std::vector<T>::const_iterator { return data.cbegin(); }
+	[[nodiscard]] auto cend() const -> typename std::vector<T>::const_iterator { return data.cend(); }
+
 	auto operator[](size_t i) -> T& {
 		auto sz = size();
 		if (i < 0 || i >= sz) {
@@ -34,7 +44,7 @@ public:
 	}
 
 	/* Unary minus operator */
-	auto operator-() const -> const Vector<T> {
+	auto operator-() const -> Vector<T> {
 		Vector<T> ret(*this);
 		for (size_t i = 0; i < ret.size(); ++i) {
 			ret[i] = -ret[i];

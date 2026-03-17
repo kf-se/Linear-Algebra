@@ -8,6 +8,7 @@ protected:
 	Vector<double> v1{1.0, 2.0, 3.0};
 	Vector<double> v2{4.0, 5.0, 6.0};
 	Vector<double> zeros{0.0, 0.0, 0.0};
+	const Vector<double> constV3{1.0, 2.0, 3.0};
 };
 
 TEST_F(VectorTest, SizeReturnsCorrectSize) { EXPECT_EQ(v1.size(), 3); }
@@ -80,6 +81,26 @@ TEST_F(VectorTest, Negation) {
 	EXPECT_DOUBLE_EQ(res[0], -4.0);
 	EXPECT_DOUBLE_EQ(res[1], -5.0);
 	EXPECT_DOUBLE_EQ(res[2], -6.0);
+}
+
+TEST_F(VectorTest, Iterators) {
+	auto res = 0;
+	for (const double& it : v1) {
+		res += it;
+	}
+	EXPECT_DOUBLE_EQ(res, 6.0);
+
+	res = 0;
+	for (double& it : v1) {
+		res += it;
+	}
+	EXPECT_DOUBLE_EQ(res, 6.0);
+
+	res = 0;
+	for (const auto& it : constV3) {
+		res += it;
+	}
+	EXPECT_DOUBLE_EQ(res, 6.0);
 }
 
 TEST_F(VectorTest, SizeMismatchThrows) {
