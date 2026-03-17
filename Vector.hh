@@ -33,6 +33,16 @@ public:
 		return data[i];
 	}
 
+	/* Unary minus operator */
+	auto operator-() const -> const Vector<T> {
+		Vector<T> ret(*this);
+		for (size_t i = 0; i < ret.size(); ++i) {
+			ret[i] = -ret[i];
+		}
+
+		return ret;
+	}
+
 	auto operator+(Vector<T>& rhs) -> Vector<T> {
 		Vector<T> ret(*this);
 		ret += rhs;

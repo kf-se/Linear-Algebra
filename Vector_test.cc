@@ -75,6 +75,13 @@ TEST_F(VectorTest, Subtraction) {
 	EXPECT_DOUBLE_EQ(v2[2], 3.0);
 }
 
+TEST_F(VectorTest, Negation) {
+	auto res = -v2;
+	EXPECT_DOUBLE_EQ(res[0], -4.0);
+	EXPECT_DOUBLE_EQ(res[1], -5.0);
+	EXPECT_DOUBLE_EQ(res[2], -6.0);
+}
+
 TEST_F(VectorTest, SizeMismatchThrows) {
 	Vector<double> small{1.0, 2.0};
 	EXPECT_THROW(v1 + small, std::invalid_argument);
