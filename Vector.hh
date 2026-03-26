@@ -1,4 +1,6 @@
 #pragma once
+#include <algorithm>
+#include <cmath>
 #include <format>
 #include <initializer_list>
 #include <iostream>
@@ -135,6 +137,13 @@ static auto dot(Vector<T>& lhs, Vector<T>& rhs) -> T {
 		res += lhs[i] * rhs[i];
 	}
 	return res;
+}
+
+template <typename T>
+static auto norm(Vector<T>& vec) -> T {
+	auto norm = 0;
+	std::ranges::for_each(vec, [&norm](T& n) { norm += n * n; });
+	return std::sqrt(norm);
 }
 
 }	 // namespace vector

@@ -22,8 +22,8 @@
 
 | Action             | Keys      |
 | ------------------ | --------- |
-| Open dired         | `SPC o -` |
-| Delete in dired    | `d` then `x` |
+| Open directory     | `SPC o -` |
+| Delete in directory| `d` then `x` |
 | Go to definition   | `gd`      |
 | Go back            | `C-o`     |
 
