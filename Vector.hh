@@ -8,7 +8,7 @@
 #include <utility>
 #include <vector>
 
-namespace vector {
+namespace math::vector {
 
 template <typename T>
 class Vector {
@@ -154,4 +154,4 @@ static auto normalize(Vector<T>& vec) -> Vector<T>& {
 	return vec;
 }
 
-}	 // namespace vector
+}	 // namespace math::vector

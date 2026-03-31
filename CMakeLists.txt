@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(vector Vector.cc)
+add_executable(vector Vector.cc Matrix.cc)
 
 # Testing
 include(FetchContent)

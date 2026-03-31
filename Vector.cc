@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-using namespace vector;
+using namespace math::vector;
 
 int main() {
 	auto vec1 = Vector<double>(3);

@@ -1,7 +1,7 @@
 #include "Vector.hh"
 
 #include <gtest/gtest.h>
-using namespace vector;
+using namespace math::vector;
 
 class VectorTest : public ::testing::Test {
 protected:
@@ -109,17 +109,17 @@ TEST_F(VectorTest, SizeMismatchThrows) {
 }
 
 TEST_F(VectorTest, DotProduct) {
-	auto res = vector::dot(v1, v1);
+	auto res = math::vector::dot(v1, v1);
 	EXPECT_DOUBLE_EQ(res, 14.0) << res;
 }
 
 TEST_F(VectorTest, EuclideanNorm) {
-	auto res = vector::l2norm(v1);
+	auto res = math::vector::l2norm(v1);
 	EXPECT_NEAR(res, 3.74165, 1e-4) << res;
 }
 
 TEST_F(VectorTest, Normalize) {
-	auto res = vector::normalize(v1);
+	auto res = math::vector::normalize(v1);
 	EXPECT_NEAR(res[0], 0.26726, 1e-4) << res[0];
 	EXPECT_NEAR(res[1], 0.53452, 1e-4) << res[1];
 	EXPECT_NEAR(res[2], 0.80178, 1e-4) << res[2];
