@@ -114,6 +114,13 @@ TEST_F(VectorTest, DotProduct) {
 }
 
 TEST_F(VectorTest, EuclideanNorm) {
-	auto res = vector::norm(v1);
+	auto res = vector::l2norm(v1);
 	EXPECT_NEAR(res, 3.74165, 1e-4) << res;
+}
+
+TEST_F(VectorTest, Normalize) {
+	auto res = vector::normalize(v1);
+	EXPECT_NEAR(res[0], 0.26726, 1e-4) << res[0];
+	EXPECT_NEAR(res[1], 0.53452, 1e-4) << res[1];
+	EXPECT_NEAR(res[2], 0.80178, 1e-4) << res[2];
 }

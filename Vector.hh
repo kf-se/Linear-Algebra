@@ -5,6 +5,7 @@
 #include <initializer_list>
 #include <iostream>
 #include <stdexcept>
+#include <utility>
 #include <vector>
 
 namespace vector {
@@ -140,10 +141,17 @@ static auto dot(Vector<T>& lhs, Vector<T>& rhs) -> T {
 }
 
 template <typename T>
-static auto norm(Vector<T>& vec) -> T {
+static auto l2norm(const Vector<T>& vec) -> T {
 	auto norm = 0;
-	std::ranges::for_each(vec, [&norm](T& n) { norm += n * n; });
+	std::ranges::for_each(std::as_const(vec), [&norm](const T& n) { norm += n * n; });
 	return std::sqrt(norm);
+}
+
+template <typename T>
+static auto normalize(Vector<T>& vec) -> Vector<T>& {
+	const auto norm = l2norm(vec);
+	std::ranges::for_each(vec, [&norm](T& n) { n /= norm; });
+	return vec;
 }
 
 }	 // namespace vector
