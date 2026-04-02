@@ -7,9 +7,9 @@
 namespace math::matrix {
 
 struct msize {
-	size_t mz;
-	size_t nz;
-	auto operator==(const msize& rhs) const -> bool { return mz == rhs.mz && nz == rhs.nz; }
+	size_t rows;
+	size_t columns;
+	auto operator==(const msize& rhs) const -> bool { return rows == rhs.rows && columns == rhs.columns; }
 };
 
 template <typename T>
@@ -20,17 +20,19 @@ private:
 
 public:
 	Matrix(size_t m, size_t n) : matrix(m * n), sz(m, n) {}
-	Matrix(std::initializer_list<T> data, size_t m, size_t n) : matrix(data), sz(m, n) {}
+	Matrix(std::initializer_list<T> data, size_t m, size_t n) : matrix(data), sz(m, n) {
+		assert(data.size() == m * n && "Size mismatch between data and m * n.");
+	}
 	Matrix(std::initializer_list<std::initializer_list<T>> data) {
-		sz.mz = data.size();
-		sz.nz = 0;
-		if (sz.mz > 0) {
+		sz.rows = data.size();
+		sz.columns = 0;
+		if (sz.rows > 0) {
 			for (auto& row : data) {
 				size_t newRowSize = row.size();
-				if (sz.nz == 0) {
-					sz.nz = newRowSize;
+				if (sz.columns == 0) {
+					sz.columns = newRowSize;
 				}
-				assert((newRowSize == sz.nz) && "Rows must be of equal size in matrix.");
+				assert((newRowSize == sz.columns) && "Rows must be of equal size in matrix.");
 				matrix.append_range(row);
 			}
 		}
