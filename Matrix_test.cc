@@ -17,3 +17,13 @@ TEST_F(MatrixTest, constructor) {
 	msize exp(1, 3);
 	EXPECT_EQ(exp, m1.size());
 }
+
+TEST_F(MatrixTest, index) {
+	EXPECT_EQ(1, m1(0, 0));
+	EXPECT_EQ(2, m1(0, 1));
+	EXPECT_EQ(3, m1(0, 2));
+
+	EXPECT_EQ(4, m2(1, 0));
+	EXPECT_EQ(5, m2(1, 1));
+	EXPECT_EQ(6, m2(1, 2));
+}

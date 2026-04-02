@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <cstddef>
+#include <format>
 #include <vector>
 
 namespace math::matrix {
@@ -38,5 +39,13 @@ public:
 		}
 	}
 	[[nodiscard]] auto size() const -> msize { return sz; }
+
+	auto operator()(int i, int j) const -> T {
+		if (i * j > matrix.size()) {
+			throw std::invalid_argument(std::format("Index i {}, j {} out of range {}", i, j, matrix.size()));
+		}
+
+		return matrix[(i * sz.columns) + j];
+	}
 };
 }	 // namespace math::matrix
