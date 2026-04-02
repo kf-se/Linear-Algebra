@@ -21,4 +21,8 @@ enable_testing()
 add_executable(vector_test Vector_test.cc)
 target_link_libraries(vector_test GTest::gtest_main)
 
+add_executable(matrix_test Matrix_test.cc)
+target_link_libraries(matrix_test GTest::gtest_main)
+
 add_test(NAME vector_test COMMAND vector_test)
+add_test(NAME matrix_test COMMAND matrix_test)
