@@ -27,3 +27,10 @@ TEST_F(MatrixTest, index) {
 	EXPECT_EQ(5, m2(1, 1));
 	EXPECT_EQ(6, m2(1, 2));
 }
+
+TEST_F(MatrixTest, ostream_operator) {
+	std::stringstream expected("1 2 3\n4 5 6");
+	std::stringstream res;
+	res << m2;
+	EXPECT_EQ(expected.str(), res.str());
+}

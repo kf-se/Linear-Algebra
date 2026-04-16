@@ -3,6 +3,7 @@
 #include <cassert>
 #include <cstddef>
 #include <format>
+#include <ostream>
 #include <vector>
 
 namespace math::matrix {
@@ -39,6 +40,8 @@ public:
 		}
 	}
 	[[nodiscard]] auto size() const -> msize { return sz; }
+	[[nodiscard]] auto rows() const -> size_t { return sz.rows; }
+	[[nodiscard]] auto cols() const -> size_t { return sz.columns; }
 
 	auto operator()(int i, int j) const -> T {
 		if (i * j > matrix.size()) {
@@ -47,5 +50,17 @@ public:
 
 		return matrix[(i * sz.columns) + j];
 	}
+
+	friend auto operator<<(std::ostream& stream, const Matrix<T>& matrix) -> std::ostream& {
+		for (size_t i = 0; i < matrix.rows(); i++) {
+			for (size_t j = 0; j < matrix.cols(); j++) {
+				stream << matrix(i, j);
+				if (j < matrix.cols() - 1) stream << " ";
+			}
+			if (i < matrix.rows() - 1) stream << "\n";
+		}
+		return stream;
+	}
 };
+
 }	 // namespace math::matrix

@@ -38,11 +38,11 @@ A ground-up C++ linear algebra library targeting Newton-Raphson load flow analys
 
 ### Storage and Access
 
-**Construction** — default, from dimensions (rows × cols, zero-initialized), from dimensions with fill value, from `std::initializer_list<std::initializer_list<T>>` for literal matrix definitions in tests.
+[x] **Construction** — default, from dimensions (rows × cols, zero-initialized), from dimensions with fill value, from `std::initializer_list<std::initializer_list<T>>` for literal matrix definitions in tests.
 
-**Element access** — `operator()(i, j)` (const and non-const) using row-major indexing internally (`i * cols + j`). Prefer `operator()` over double-bracket `[][]` — it's cleaner and avoids exposing internal layout through proxy objects.
+[x] **Element access** — `operator()(i, j)` (const and non-const) using row-major indexing internally (`i * cols + j`). Prefer `operator()` over double-bracket `[][]` — it's cleaner and avoids exposing internal layout through proxy objects.
 
-**Shape queries** — `rows()`, `cols()`, `size()` (total element count).
+[x] **Shape queries** — `rows()`, `cols()`, `size()` (total element count).
 
 **Stream output** — `operator<<` for printing matrices. Invaluable for debugging when the Jacobian looks wrong and iterations diverge.
 
