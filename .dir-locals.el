@@ -1,1 +1,1 @@
-((nil . ((compile-command . "cmake -S . -B build && cmake --build build"))))
+((nil . ((compile-command . "cmake -S . -B build && cmake --build build && ctest --test-dir build -V"))))
