@@ -34,3 +34,11 @@ TEST_F(MatrixTest, ostream_operator) {
 	res << m2;
 	EXPECT_EQ(expected.str(), res.str());
 }
+
+TEST_F(MatrixTest, equality) { EXPECT_EQ(m2, m2); }
+
+TEST_F(MatrixTest, addition_mutating) {
+	Matrix<double> expected{{2.0, 4.0, 6.0}, {8.0, 10.0, 12.0}};
+	m2 += m2;
+	EXPECT_EQ(expected, m2);
+}

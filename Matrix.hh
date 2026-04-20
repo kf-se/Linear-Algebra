@@ -3,6 +3,7 @@
 #include <cassert>
 #include <cstddef>
 #include <format>
+#include <iostream>
 #include <ostream>
 #include <vector>
 
@@ -19,6 +20,8 @@ class Matrix {
 private:
 	std::vector<T> matrix;
 	msize sz;
+
+	[[nodiscard]] auto index(size_t i, size_t j) const -> size_t { return (i * sz.columns) + j; }
 
 public:
 	Matrix(size_t m, size_t n) : matrix(m * n), sz(m, n) {}
@@ -48,7 +51,33 @@ public:
 			throw std::invalid_argument(std::format("Index i {}, j {} out of range {}", i, j, matrix.size()));
 		}
 
-		return matrix[(i * sz.columns) + j];
+		return matrix[index(i, j)];
+	}
+
+	auto operator+=(const Matrix<T>& other) -> Matrix<T>& {
+		if (size() != other.size()) {
+			throw std::out_of_range("matrix dimensions do not match");
+		}
+		for (size_t i = 0; i < other.rows(); i++) {
+			for (size_t j = 0; j < other.cols(); j++) {
+				matrix[index(i, j)] += other(i, j);
+			}
+		}
+		return *this;
+	}
+
+	auto operator==(const Matrix<T>& other) const -> bool {
+		if (size() != other.size()) {
+			return false;
+		}
+		for (size_t i = 0; i < other.rows(); i++) {
+			for (size_t j = 0; j < other.cols(); j++) {
+				if (!(matrix[index(i, j)] == other(i, j))) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	friend auto operator<<(std::ostream& stream, const Matrix<T>& matrix) -> std::ostream& {

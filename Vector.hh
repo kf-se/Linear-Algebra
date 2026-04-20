@@ -80,7 +80,7 @@ public:
 		return ret;
 	}
 
-	auto operator+=(Vector<T>& rhs) -> Vector<T>& {
+	auto operator+=(const Vector<T>& rhs) -> Vector<T>& {
 		if (this->size() != rhs.size()) {
 			throw std::invalid_argument("Vector size mismatch");
 		}

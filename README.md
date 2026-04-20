@@ -44,7 +44,7 @@ A ground-up C++ linear algebra library targeting Newton-Raphson load flow analys
 
 [x] **Shape queries** — `rows()`, `cols()`, `size()` (total element count).
 
-**Stream output** — `operator<<` for printing matrices. Invaluable for debugging when the Jacobian looks wrong and iterations diverge.
+[x] **Stream output** — `operator<<` for printing matrices. Invaluable for debugging when the Jacobian looks wrong and iterations diverge.
 
 ### Arithmetic
 
